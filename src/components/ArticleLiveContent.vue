@@ -423,6 +423,19 @@ watch(
   (`section > h2` / nested `section > h3`) lives here instead of `minerva.css`.
 -->
 <style>
+/*
+ * Desktop: wide wikitables (discography, chart columns, etc.) must stay inside the
+ * reading column — cap width to the article box and scroll horizontally.
+ */
+.article-content[data-skin='desktop'] .mw-parser-output {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.article-content[data-skin='desktop'] .mw-parser-output table {
+  max-width: 100%;
+}
+
 .article-content[data-skin='mobile'] .mw-parser-output .protowiki-mobile-h2 {
   display: flex;
   align-items: center;
