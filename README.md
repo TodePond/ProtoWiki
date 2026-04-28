@@ -1,1 +1,1 @@
-Moved to [https://github.com/wikimedia/ProtoWiki](github.com/wikimedia/ProtoWiki)
+Moved to [github.com/wikimedia/ProtoWiki](https://github.com/wikimedia/ProtoWiki)
