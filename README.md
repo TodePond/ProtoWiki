@@ -1,14 +1,13 @@
 # ProtoWiki
 
-Tools, strategies, frameworks and resources for prototyping MediaWiki
-projects.
+Tools, strategies, resources and components for prototyping MediaWiki projects.
 
-ProtoWiki is a small Vite + Vue 3 + Wikimedia Codex playground for
-making **realistic** Wikimedia prototypes — for designers, product
-managers, and engineers — and a documented platform for AI coding agents
-to extend it.
+There are two main ways of using this repo:
 
-## Quick start
+1. Give your agent skills from the [skills](.agents/skills/) folder to show them how to prototype MediaWiki features.
+2. Clone this repo and use it as a prototyping environment itself.
+
+## Running it locally
 
 ```bash
 git clone https://github.com/<org>/protowiki.git
@@ -45,20 +44,6 @@ npm run lint        # ESLint
 - `.agents/skills/` — every non-code resource: how to use Codex, fetch
   Wikipedia data, prototype editor UIs, deploy. See below.
 
-## Architecture in three sentences
-
-- **One folder = one prototype.** File-based routing means new pages need
-  zero configuration; the home gallery auto-lists them.
-- **Single-concern wrappers compose by nesting.** Each wrapper paints
-  exactly one Wikipedia surface (chrome, article column, special-page
-  shell, plain canvas). Combine them as you need.
-- **Skins and themes are `data-*` attributes.** Each themable component
-  takes optional `skin` / `theme` props for local overrides; CSS keys
-  off `[data-skin]` / `[data-theme]` so subtree overrides cascade
-  cleanly through Codex tokens.
-
-For the full plan, see the architecture document in this repo's history.
-
 ## How to learn ProtoWiki
 
 ProtoWiki is documented as **Agent Skills** in `.agents/skills/`. Each
@@ -93,7 +78,6 @@ Both AI agents and humans can read them.
 
 - [`visual-editor-prototyping`](.agents/skills/visual-editor-prototyping/SKILL.md) — pick between local stand-ins / suggestions / real VE
 - [`visual-editor-vendoring`](.agents/skills/visual-editor-vendoring/SKILL.md) — vendor the real upstream VE (universal pattern)
-- [`protowiki-ve-vendoring`](.agents/skills/protowiki-ve-vendoring/SKILL.md) — ProtoWiki integration: `public/visualeditor/`, theming conflict
 
 For Edit Check-style suggestion overlays, see
 [`wiki-signals` → `suggestions.md`](.agents/skills/wiki-signals/references/suggestions.md)
@@ -109,24 +93,7 @@ Useful when sharing a prototype:
 
 ```
 /example?skin=mobile           ← force mobile chrome
-/example?theme=dark            ← force dark mode
-/example?skin=mobile&theme=dark
 ```
 
 These pin the global skin / theme; otherwise ProtoWiki resolves them
 from viewport (`>=640px` is desktop skin) and `prefers-color-scheme`.
-
-## Tech stack
-
-- Vite + Vue 3 (Composition API)
-- `unplugin-vue-router` (file-based, typed routing)
-- Vue Router (`createWebHistory` + GitHub Pages 404 fallback)
-- `@wikimedia/codex` + `@wikimedia/codex-design-tokens` + `@wikimedia/codex-icons`
-- TypeScript (non-strict; editor aid, not build blocker)
-- Plain CSS; skin/theme via `[data-*]` attribute selectors
-- Prettier + ESLint
-- GitHub Actions → GitHub Pages
-
-## License
-
-MIT.
