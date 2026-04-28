@@ -13,6 +13,7 @@ import {
 import { cdxIconAdd, cdxIconClock, cdxIconTrash } from '@wikimedia/codex-icons'
 
 import ChromeWrapper from '@/components/ChromeWrapper.vue'
+import SpecialPageWrapper from '@/components/SpecialPageWrapper.vue'
 
 definePage({
   meta: {
@@ -181,8 +182,7 @@ function removeRow(rowId: string) {
 
 <template>
   <ChromeWrapper>
-    <div class="event-worklist__body">
-      <h1 class="event-worklist__title">Wiki Loves Earth 2026</h1>
+    <SpecialPageWrapper title="Wiki Loves Earth 2026">
       <CdxTabs v-model:active="activeTab" class="event-worklist__tabs">
         <CdxTab name="details" label="Event details" disabled />
         <CdxTab name="participants" label="Participants" disabled />
@@ -246,46 +246,31 @@ function removeRow(rowId: string) {
         </CdxTab>
         <CdxTab name="contributions" label="Contributions" disabled />
       </CdxTabs>
-    </div>
 
-    <CdxDialog
-      v-model:open="showAddDialog"
-      title="Add to worklist"
-      close-button-label="Close"
-      :dismissable="true"
-      :primary-action="primaryAction"
-      @primary="onAddToWorklist"
-    >
-      <CdxField>
-        <template #label>Article URL</template>
-        <template #description>Paste one article URL per line</template>
-        <CdxTextArea
-          v-model="urlPaste"
-          :rows="6"
-          class="event-worklist__url-textarea"
-          :placeholder="'e.g.\u00A0https://en.wikipedia.org/wiki/Climate_change'"
-        />
-      </CdxField>
-    </CdxDialog>
+      <CdxDialog
+        v-model:open="showAddDialog"
+        title="Add to worklist"
+        close-button-label="Close"
+        :dismissable="true"
+        :primary-action="primaryAction"
+        @primary="onAddToWorklist"
+      >
+        <CdxField>
+          <template #label>Article URL</template>
+          <template #description>Paste one article URL per line</template>
+          <CdxTextArea
+            v-model="urlPaste"
+            :rows="6"
+            class="event-worklist__url-textarea"
+            :placeholder="'e.g.\u00A0https://en.wikipedia.org/wiki/Climate_change'"
+          />
+        </CdxField>
+      </CdxDialog>
+    </SpecialPageWrapper>
   </ChromeWrapper>
 </template>
 
 <style scoped>
-.event-worklist__body {
-  padding: var(--spacing-100) var(--spacing-100);
-}
-
-.event-worklist__title {
-  /* margin: 0 0 var(--spacing-100); */
-  margin-top: var(--spacing-50);
-  margin-bottom: var(--spacing-150);
-  font-family: var(--font-family-system-sans);
-  font-size: var(--font-size-xx-large);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-xx-small);
-  color: var(--color-base);
-}
-
 .event-worklist__tabs {
   margin-bottom: var(--spacing-100);
 }

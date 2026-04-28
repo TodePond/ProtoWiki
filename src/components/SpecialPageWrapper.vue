@@ -96,7 +96,8 @@ const slots = useSlots()
   width: 100%;
   max-width: 99.75rem;
   margin: 0 auto;
-  padding-top: var(--spacing-50);
+  padding-top: var(--spacing-150);
+  padding-inline: var(--spacing-150);
   background-color: var(--background-color-base);
 }
 
@@ -132,6 +133,25 @@ const slots = useSlots()
   border: none;
 }
 
+/*
+ * Minerva / mobile — sans title (global `h1` is serif Heading 1); xx-large reads
+ * smaller than xxx-large without the desktop title-rule line under the header.
+ */
+.special-page-wrapper[data-skin='mobile'] .special-page-wrapper__title {
+  padding-bottom: 0;
+  font-family:
+    var(--font-family-system-sans, system-ui, sans-serif), var(--font-family-base, sans-serif);
+  font-size: var(--font-size-xx-large);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-xx-large);
+  color: var(--color-base);
+}
+
+.special-page-wrapper[data-skin='mobile'] .special-page-wrapper__header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 .special-page-wrapper__header-aside {
   display: inline-flex;
   flex-wrap: wrap;
@@ -164,27 +184,16 @@ const slots = useSlots()
   min-width: 0;
 }
 
-.special-page-wrapper[data-skin='mobile'] .special-page-wrapper__help {
-  display: none;
+.special-page-wrapper[data-skin='mobile'] {
+  padding: var(--spacing-100);
 }
 
-.special-page-wrapper[data-skin='mobile'] {
-  padding-inline: var(--spacing-100, 16px);
+.special-page-wrapper[data-skin='mobile'] .special-page-wrapper__help {
+  display: none;
 }
 
 .special-page-wrapper[data-skin='mobile'] .special-page-wrapper__notices {
   margin-inline: calc(-1 * var(--spacing-100, 16px));
   padding-inline: var(--spacing-100, 16px);
-}
-
-@media (max-width: 1120px) {
-  .special-page-wrapper {
-    padding-inline: var(--spacing-100, 16px);
-  }
-
-  .special-page-wrapper__notices {
-    margin-inline: calc(-1 * var(--spacing-100, 16px));
-    padding-inline: var(--spacing-100, 16px);
-  }
 }
 </style>
